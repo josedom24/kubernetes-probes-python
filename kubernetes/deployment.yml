@@ -18,9 +18,24 @@ spec:
       containers:
       - name: contenedor-python
         image: josedom24/k8s-probe-python
-        imagePullPolicy: Always
         ports:
           - name: http-server
             containerPort: 8080
-        
+        livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http-server
+            initialDelaySeconds: 1
+            timeoutSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 2
+
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 1
+          timeoutSeconds: 10
+          periodSeconds: 30
+          failureThreshold: 3 
            
