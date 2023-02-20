@@ -14,11 +14,21 @@ spec:
     metadata:
       labels:
         app: python-probe
-  
     spec:
       containers:
       - name: contenedor-python
         image: josedom24/k8s-probe-python
+        imagePullPolicy: Always
         ports:
           - name: http-server
             containerPort: 8080
+        livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+           
+        readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+           

@@ -9,12 +9,10 @@ def hello():
 
 @app.route("/healthz")
 def healthz():
-    sleep(2)
     return "ok"
 
 @app.route("/ready")
 def ready():
-    sleep(10)
     return "ok"
 
 if __name__ == "__main__":
