@@ -14,7 +14,7 @@ def healthz():
 
 @app.route("/ready")
 def ready():
-    sleep(5)
+    sleep(10)
     return "ok"
 
 if __name__ == "__main__":
