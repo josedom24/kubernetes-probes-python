@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-probe-python
+  labels:
+    app: python-probe
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    nodePort: 30000
+    targetPort: http-server
+  selector:
+    app: python-probe

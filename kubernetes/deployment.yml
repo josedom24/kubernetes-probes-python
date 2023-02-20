@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-probe-python
+  labels:
+    app: python-probe
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: python-probe
+
+  template:
+    metadata:
+      labels:
+        app: python-probe
+  
+    spec:
+      containers:
+      - name: contenedor-python
+        image: josedom24/k8s-probe-python
+        ports:
+          - name: http-server
+            containerPort: 8080
